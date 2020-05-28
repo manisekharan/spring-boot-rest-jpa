@@ -23,7 +23,7 @@ public class EventApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		logger.info("\n----Begin logging BooksServiceApplication----");
+		logger.info("\n----Begin logging EventApplication----");
 
 		logger.info("----System Properties from VM Arguments----");
 		logger.info("server.port: " + System.getProperty("server.port"));
@@ -36,15 +36,12 @@ public class EventApplication implements CommandLineRunner {
 			getActiveProfiles();
 			logger.info("----Environment Properties----");
 			logger.info("server.port: " + environment.getProperty("server.port"));
-			logger.info("nl.amis.environment: " + environment.getProperty("nl.amis.environment"));
+			logger.info("org.tamil.timeline.environment: " + environment.getProperty("nl.amis.environment"));
 			logger.info("spring.datasource.url: " + environment.getProperty("spring.datasource.url"));
-			logger.info("spring.datasource.username: " + environment.getProperty("spring.datasource.username"));
-			logger.info("spring.datasource.password: " + environment.getProperty("spring.datasource.password"));
-			logger.info("spring.jpa.database-platform: " + environment.getProperty("spring.jpa.database-platform"));
+			logger.info("spring.h2.console.enabled: " + environment.getProperty("spring.h2.console.enabled"));
 			logger.info("spring.jpa.hibernate.ddl-auto: " + environment.getProperty("spring.jpa.hibernate.ddl-auto"));
 		}
-
-		logger.info("----End logging BooksServiceApplication----");
+		logger.info("----End logging EventApplication----");
 	}
 
 	private void getActiveProfiles() {

@@ -1,7 +1,10 @@
 package org.tamil.timeline.domain;
 
+import com.fasterxml.jackson.annotation.*;
 
+import java.util.UUID;
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 public class Event {
