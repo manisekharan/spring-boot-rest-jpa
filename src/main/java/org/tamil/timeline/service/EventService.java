@@ -25,16 +25,15 @@ public class EventService implements IEventService {
         return eventRepository.findById(id).orElseGet(Event::new);
     }
 
-    public void addEvent(Event event) {
-        eventRepository.save(event);
+    public Event addEvent(Event event) {
+        return eventRepository.save(event);
     }
 
-    public void updateEvent(Long id, Event event) {
-        eventRepository.save(event);
+    public Event updateEvent(Long id, Event event) {
+        return eventRepository.save(event);
     }
 
     public void deleteEvent(Long id) {
         eventRepository.deleteById(id);
     }
-
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,6 +12,7 @@ import org.tamil.timeline.domain.Event;
 import org.tamil.timeline.service.EventService;
 
 @RestController
+@RequestMapping("/api/timeline/v1")
 public class EventController {
     private static final Logger logger = LoggerFactory.getLogger(EventController.class);
 
@@ -18,28 +20,49 @@ public class EventController {
     private EventService eventService;
 
     @GetMapping("/events")
-    public List getAllEvents() {
-        logger.info("\n----Calling EventController.getAllEvents()----");
-        return eventService.getAllEvents();
+    public ResponseEntity<List<Event>> getAllEvents() {
+        try{
+            logger.info("\n----Calling EventController.getAllEvents()----");
+            return new ResponseEntity<>(eventService.getAllEvents(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @GetMapping("/events/{id}")
-    public Event getEvent(@PathVariable Long eventId){
-        return eventService.getEvent(eventId);
+    @GetMapping("/events/{eventId}")
+    public ResponseEntity<Event> getEvent(@PathVariable Long eventId){
+        try {
+            return new ResponseEntity<>(eventService.getEvent(eventId), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+        }
     }
 
     @PostMapping("/events")
-    public void addEvent(@RequestBody Event event) {
-        eventService.addEvent(event);
+    public ResponseEntity<Event> addEvent(@RequestBody Event event) {
+        try {
+            return new ResponseEntity<>(eventService.addEvent(event), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+        }
     }
 
-    @PutMapping("/events/{id}")
-    public void updateEvent(@PathVariable Long eventId, @RequestBody Event event) {
-        eventService.updateEvent(eventId, event);
+    @PutMapping("/events/{eventId}")
+    public ResponseEntity<Event> updateEvent(@PathVariable Long eventId, @RequestBody Event event) {
+        try{
+            return new ResponseEntity<>(eventService.updateEvent(eventId, event), HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
     }
 
-    @DeleteMapping("/events/{id}")
-    public void deleteEvent(@PathVariable Long eventId) {
-        eventService.deleteEvent(eventId);
+    @DeleteMapping("/events/{eventId}")
+    public ResponseEntity<HttpStatus> deleteEvent(@PathVariable Long eventId) {
+        try {
+            eventService.deleteEvent(eventId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
     }
 }
