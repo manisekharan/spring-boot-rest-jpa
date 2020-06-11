@@ -6,6 +6,7 @@ var singleFileUploadError = document.querySelector('#singleFileUploadError');
 var singleFileUploadSuccess = document.querySelector('#singleFileUploadSuccess');
 
 function uploadSingleFile(file) {
+    console.log("uploadSingleFile");
     var formData = new FormData();
     formData.append("file", file);
 

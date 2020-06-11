@@ -11,7 +11,7 @@ function uploadSingleFile(file) {
     formData.append("file", file);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/api/timeline/csv/v1/upload");
+    xhr.open("POST", "http://localhost:9090/api/timeline/csv/v1/upload");
 
     xhr.onload = function() {
         console.log(xhr.responseText);
