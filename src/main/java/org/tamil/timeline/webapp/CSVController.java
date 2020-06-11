@@ -22,7 +22,7 @@ import org.tamil.timeline.common.helper.CSVHelper;
 import org.tamil.timeline.common.message.ResponseMessage;
 import org.tamil.timeline.domain.Event;
 
-//@CrossOrigin("http://localhost:9090")
+@CrossOrigin("http://localhost:9090")
 @Controller
 @RequestMapping("/api/timeline/csv/v1")
 public class CSVController {
