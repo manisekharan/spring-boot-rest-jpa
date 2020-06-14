@@ -20,3 +20,6 @@ Build -> Build Project
 
 #### Open server is up. Use Postman json files(api/resources/e2e/) to hit the services.
 Add/Update/Get/Delete Events
+
+#### Note
+It uses H2 in-memory database

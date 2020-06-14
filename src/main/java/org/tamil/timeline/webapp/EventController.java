@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.tamil.timeline.domain.Event;
 import org.tamil.timeline.service.EventService;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/timeline/v1")
 public class EventController {
